@@ -16,6 +16,16 @@ function getRandomFloat(min, max, digits) {
 
 const AVATAR_ID = [1];
 
+function getAvatarUrl () {
+  let avatarUrlId = AVATAR_ID[AVATAR_ID.length - 1];
+  AVATAR_ID.push(avatarUrlId + 1);
+
+  if (avatarUrlId < 10) {
+    avatarUrlId = `0${avatarUrlId}`;
+  }
+  return `img/avatars/user${avatarUrlId}.png`;
+}
+
 const ADVERTISEMENT_TITLE = [
   'Гостиница уютная',
   'Отель у моря',
@@ -79,21 +89,14 @@ const createAdvertisement = () => {
   const LOCATION_LAT = getRandomFloat(35.65, 35.7, 5);
   const LOCATION_LNG = getRandomFloat(139.7, 139.8, 5);
 
-  let avatarUrlId = AVATAR_ID[AVATAR_ID.length-1];
-  AVATAR_ID.push(avatarUrlId + 1);
-
-  if (avatarUrlId < 10) {
-    avatarUrlId = '0' + avatarUrlId;
-  }
-
   return {
     author: {
-      avatar: 'img/avatars/user' +  avatarUrlId + '.png',
+      avatar: getAvatarUrl(),
     },
 
     offer:{
       title: getRandomArrayElement(ADVERTISEMENT_TITLE),
-      address: LOCATION_LAT + ',' + LOCATION_LNG,
+      address: `${LOCATION_LAT}, ${LOCATION_LNG}`,
       price: getRandomInt(100, 5000),
       type: getRandomArrayElement(TYPES_HOUSEROOM),
       rooms: getRandomInt(1, 5),
@@ -113,3 +116,5 @@ const createAdvertisement = () => {
 };
 
 const similarAdvertisement = Array.from({length: SIMILAR_ADVERTISEMENT_COUNT}, createAdvertisement);
+
+window.console.log(similarAdvertisement);
