@@ -6,25 +6,25 @@ const adFilterElements = admapFilter.querySelectorAll('select, fieldset');
 const addDisabledStatus = () => {
   adForm.classList.add('ad-form--disabled');
   adFieldset.forEach((fieldset) => {
-    fieldset.setAttribute('disabled', 'disabled');
+    fieldset.disabled = true;
   });
   admapFilter.classList.add('map__filters--disabled');
   adFilterElements.forEach((filterElement) => {
-    filterElement.setAttribute('disabled', 'disabled');
+    filterElement.disabled = true;
   });
 };
 
-addDisabledStatus();
+export {addDisabledStatus};
 
 const addActiveStatus = () => {
   adForm.classList.remove('ad-form--disabled');
   adFieldset.forEach((fieldset) => {
-    fieldset.removeAttribute('disabled', 'disabled');
+    fieldset.disabled = false;
   });
   admapFilter.classList.remove('map__filters--disabled');
   adFilterElements.forEach((filterElement) => {
-    filterElement.removeAttribute('disabled', 'disabled');
+    filterElement.disabled = false;
   });
 };
 
-addActiveStatus();
+export {addActiveStatus};

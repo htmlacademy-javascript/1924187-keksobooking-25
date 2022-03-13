@@ -4,6 +4,20 @@ window.console.log(
   createSimilarAdvertisement()
 );
 
-import './card.js';
+import {appendSimilarAdvertisement} from './card.js';
 
-import './form-status.js';
+window.console.log(
+  appendSimilarAdvertisement(createSimilarAdvertisement())
+);
+
+import {addDisabledStatus} from './form-status.js';
+
+window.console.log(
+  addDisabledStatus()
+);
+
+import {addActiveStatus} from './form-status.js';
+
+window.console.log(
+  addActiveStatus()
+);

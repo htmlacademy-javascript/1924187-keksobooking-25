@@ -67,3 +67,5 @@ const appendSimilarAdvertisement = (similarAdvertisements) => {
 };
 
 appendSimilarAdvertisement(createSimilarAdvertisement());
+
+export {appendSimilarAdvertisement};
