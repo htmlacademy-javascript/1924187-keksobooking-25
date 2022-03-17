@@ -37,17 +37,13 @@ function setMinPriceAttr () {
 
 houseroomTypes.addEventListener('change', setMinPriceAttr);
 
-const ErrorMassagePrice = () => `Минимальная цена ${price.min}`;
+const ErrorMessagePrice = () => `Минимальная цена ${price.min}`;
 
 function minPriceValidation () {
-  if (price.value >= price.min) {
-    return true;
-  } else {
-    return false;
-  }
+  return Number(price.value) >= Number(price.min);
 }
 
-pristine.addValidator(price, minPriceValidation, ErrorMassagePrice);
+pristine.addValidator(price, minPriceValidation, ErrorMessagePrice);
 
 form.addEventListener('submit', (evt) => {
   evt.preventDefault();
