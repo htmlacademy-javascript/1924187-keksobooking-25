@@ -1,10 +1,10 @@
-import {renderCards} from './map.js';
 import {showAlert} from './util.js';
 
-const SIMILAR_ADVERTISEMENT_COUNT = 10;
+const GET_DATA_ADDRESS = 'https://25.javascript.pages.academy/keksobooking/data';
+const SEND_DATA_ADDRESS = 'https://25.javascript.pages.academy/keksobooking';
 
 const getData = (onSuccess) => {
-  fetch('https://25.javascript.pages.academy/keksobooking/data')
+  fetch(GET_DATA_ADDRESS)
     .then((response) => response.json())
     .then((cards) => {
       onSuccess(cards);
@@ -14,13 +14,9 @@ const getData = (onSuccess) => {
     });
 };
 
-getData((cards) => {
-  renderCards(cards.slice(0, SIMILAR_ADVERTISEMENT_COUNT));
-});
-
 const sendData = (onSuccess, onFail, body) => {
   fetch(
-    'https://25.javascript.pages.academy/keksobooking',
+    SEND_DATA_ADDRESS,
     {
       method: 'POST',
       body,

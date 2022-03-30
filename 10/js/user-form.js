@@ -1,6 +1,5 @@
 import {resetMap} from './map.js';
-import {showSuccsessMessage} from './message-form-sending.js';
-import {showErrorMessage} from './message-form-sending.js';
+import {showMessage} from './util.js';
 import {resetSlider} from './price-slider.js';
 import {sendData} from './api.js';
 
@@ -16,6 +15,7 @@ const submitButton = document.querySelector('[type="submit"]');
 
 const pristine = new Pristine(form, {
   classTo: 'ad-form__element',
+  errorClass: 'validation-text',
   errorTextParent: 'ad-form__element',
 });
 
@@ -85,12 +85,12 @@ form.addEventListener('submit', (evt) => {
       () => {
         form.reset();
         resetMap();
-        showSuccsessMessage();
+        showMessage('success');
         unblockSubmitButton();
         resetSlider();
       },
       () => {
-        showErrorMessage();
+        showMessage('error');
         unblockSubmitButton();
       },
       new FormData(evt.target),

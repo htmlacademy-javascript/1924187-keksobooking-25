@@ -25,19 +25,8 @@ export {isEscapeKey};
 const ALERT_SHOW_TIME = 5000;
 
 const showAlert = (message) => {
-  const alertContainer = document.createElement('div');
-  alertContainer.style.zIndex = 100;
-  alertContainer.style.position = 'absolute';
-  alertContainer.style.left = 0;
-  alertContainer.style.top = 0;
-  alertContainer.style.right = 0;
-  alertContainer.style.padding = '10px 3px';
-  alertContainer.style.fontSize = '30px';
-  alertContainer.style.textAlign = 'center';
-  alertContainer.style.backgroundColor = 'red';
-
+  const alertContainer = document.createElement('div', { is : 'show-alert' });
   alertContainer.textContent = message;
-
   document.body.append(alertContainer);
 
   setTimeout(() => {
@@ -46,3 +35,25 @@ const showAlert = (message) => {
 };
 
 export {showAlert};
+
+const showMessage = (messageType) => {
+  const typeMessageTamplate = document.querySelector(`#${messageType}`).content.querySelector(`.${messageType}`);
+  const massage = typeMessageTamplate.cloneNode(true);
+  document.querySelector('.notice').append(massage);
+  document.addEventListener('keydown', (evt) => {
+    if (isEscapeKey(evt)) {
+      evt.preventDefault();
+      massage.classList.add('hidden');
+    }
+  });
+  document.addEventListener('click', () => {
+    massage.classList.add('hidden');
+  });
+
+  const closeButton = typeMessageTamplate.querySelector(`.${messageType}__button`);
+  closeButton.addEventListener('click', () => {
+    massage.classList.add('hidden');
+  });
+};
+
+export {showMessage};
