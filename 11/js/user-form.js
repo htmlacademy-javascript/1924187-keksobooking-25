@@ -1,5 +1,5 @@
 import {resetMap} from './map.js';
-import {showMessage} from './util.js';
+import {showMessage} from './message.js';
 import {resetSlider} from './price-slider.js';
 import {sendData} from './api.js';
 

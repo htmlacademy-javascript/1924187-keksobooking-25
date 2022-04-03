@@ -1,4 +1,4 @@
-import {showAlert} from './util.js';
+import {showAlert} from './message.js';
 
 const GET_DATA_ADDRESS = 'https://25.javascript.pages.academy/keksobooking/data';
 const SEND_DATA_ADDRESS = 'https://25.javascript.pages.academy/keksobooking';

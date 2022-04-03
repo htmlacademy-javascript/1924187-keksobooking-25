@@ -48,11 +48,11 @@ const housingFiltration = ({offer}) =>
 
 export {housingFiltration};
 
-const changeevent = (cb) => {
-  mapFiltersForm.addEventListener('change', () => cb());
+const changeEvent = (cb) => {
+  mapFiltersForm.addEventListener('change', cb);
 };
 
-export {changeevent};
+export {changeEvent};
 
 
 const getFeaturesRank = ({offer}) => {
@@ -79,7 +79,7 @@ const compareFeatures = (featureA, featureB) => {
 export {compareFeatures};
 
 const resetFiltres = (cb) => {
-  mapFiltersForm.addEventListener('reset', () => cb());
+  mapFiltersForm.addEventListener('reset', () => setTimeout(cb, 100));
 };
 
 export {resetFiltres};

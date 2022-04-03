@@ -10,7 +10,7 @@ import './price-slider.js';
 
 import {getData} from './api.js';
 
-import {changeevent, resetFiltres} from './map-filter.js';
+import {changeEvent, resetFiltres} from './map-filter.js';
 
 import {debounce} from './util.js';
 
@@ -22,12 +22,9 @@ const RERENDER_DELAY = 500;
 
 getData((cards) => {
   renderCards(cards);
-  changeevent(debounce(
+  changeEvent(debounce(
     () => renderCards(cards),
     RERENDER_DELAY,
   ));
-  resetFiltres(debounce(
-    () => renderCards(cards),
-    RERENDER_DELAY,
-  ));
+  resetFiltres(() => renderCards(cards));
 });
