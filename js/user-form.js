@@ -2,15 +2,15 @@ import {resetMap} from './map.js';
 import {showMessage} from './message.js';
 import {resetSlider} from './price-slider.js';
 import {sendData} from './api.js';
-import {removeFile, avatarPreview, housingPreview} from './photo-files.js';
+import {removeFile, avatarPreviewElement, housingPreviewElement} from './photo-files.js';
 
 const form = document.querySelector('.ad-form');
-const roomNumber = form.querySelector('[name="rooms"]');
-const capacityNumber = form.querySelector('[name="capacity"]');
-const houseroomTypes = form.querySelector('[name="type"]');
-const price = form.querySelector('[name="price"]');
-const timeCheckin = form.querySelector('[name="timein"]');
-const timeCheckout = form.querySelector('[name="timeout"]');
+const roomNumberElement = form.querySelector('[name="rooms"]');
+const capacityNumberElement = form.querySelector('[name="capacity"]');
+const houseroomTypesElement = form.querySelector('[name="type"]');
+const priceElement = form.querySelector('[name="price"]');
+const timeCheckinElement = form.querySelector('[name="timein"]');
+const timeCheckoutElement = form.querySelector('[name="timeout"]');
 const resetButton = document.querySelector('[type="reset"]');
 const submitButton = document.querySelector('[type="submit"]');
 const mapFiltersForm = document.querySelector('.map__filters');
@@ -38,33 +38,33 @@ const houseroomMinPrice = {
   'palace': 10000
 };
 
-const capacityValidation = () => roomForCapacity[roomNumber.value].includes(capacityNumber.value);
+const addCapacityValidation = () => roomForCapacity[roomNumberElement.value].includes(capacityNumberElement.value);
 
-pristine.addValidator(capacityNumber, capacityValidation, 'Колличество гостей не может превышать количество комнат');
+pristine.addValidator(capacityNumberElement, addCapacityValidation, 'Колличество гостей не может превышать количество комнат');
 
 const setMinPriceAttr = () => {
-  price.min = houseroomMinPrice[houseroomTypes.value];
-  price.placeholder = houseroomMinPrice[houseroomTypes.value];
+  priceElement.min = houseroomMinPrice[houseroomTypesElement.value];
+  priceElement.placeholder = houseroomMinPrice[houseroomTypesElement.value];
 };
 
-houseroomTypes.addEventListener('change', setMinPriceAttr);
+houseroomTypesElement.addEventListener('change', setMinPriceAttr);
 
-const ErrorMessagePrice = () => `Минимальная цена ${price.min}`;
+const addErrorMessagePrice = () => `Минимальная цена ${priceElement.min}`;
 
-const minPriceValidation = () => Number(price.value) >= Number(price.min);
+const addMinPriceValidation = () => Number(priceElement.value) >= Number(priceElement.min);
 
-pristine.addValidator(price, minPriceValidation, ErrorMessagePrice);
+pristine.addValidator(priceElement, addMinPriceValidation, addErrorMessagePrice);
 
-function onSelectTimeIn (evt) {
-  timeCheckin.value = evt.target.value;
-}
+const onSelectTimeIn = (evt) => {
+  timeCheckinElement.value = evt.target.value;
+};
 
-function onSelectTimeOut (evt) {
-  timeCheckout.value = evt.target.value;
-}
+const onSelectTimeOut = (evt) => {
+  timeCheckoutElement.value = evt.target.value;
+};
 
-timeCheckin.addEventListener('change', onSelectTimeOut);
-timeCheckout.addEventListener('change', onSelectTimeIn);
+timeCheckinElement.addEventListener('change', onSelectTimeOut);
+timeCheckoutElement.addEventListener('change', onSelectTimeIn);
 
 const blockSubmitButton = () => {
   submitButton.disabled = true;
@@ -89,7 +89,7 @@ form.addEventListener('submit', (evt) => {
         unblockSubmitButton();
         resetSlider();
         mapFiltersForm.reset();
-        removeFile(avatarPreview, housingPreview);
+        removeFile(avatarPreviewElement, housingPreviewElement);
       },
       () => {
         showMessage('error');
@@ -107,5 +107,5 @@ resetButton.addEventListener('click', (evt) => {
   mapFiltersForm.reset();
   resetMap();
   resetSlider();
-  removeFile(avatarPreview, housingPreview);
+  removeFile(avatarPreviewElement, housingPreviewElement);
 });

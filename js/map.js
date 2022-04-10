@@ -7,11 +7,11 @@ const CENTER_COORDINATES = {
   lng: 139.75391
 };
 
-const address = document.querySelector('[name="address"]');
+const addressElement = document.querySelector('[name="address"]');
 
-address.readOnly = true;
+addressElement.readOnly = true;
 
-address.value = `${CENTER_COORDINATES.lat}, ${CENTER_COORDINATES.lng}`;
+addressElement.value = `${CENTER_COORDINATES.lat}, ${CENTER_COORDINATES.lng}`;
 
 const map = L.map('map-canvas');
 
@@ -52,13 +52,13 @@ const mainPinMarker = L.marker(
 );
 
 mainPinMarker.on('moveend', (evt) => {
-  address.value = `${evt.target.getLatLng().lat.toFixed(5)}, ${evt.target.getLatLng().lng.toFixed(5)}`;
+  addressElement.value = `${evt.target.getLatLng().lat.toFixed(5)}, ${evt.target.getLatLng().lng.toFixed(5)}`;
 });
 
 mainPinMarker.addTo(map);
 
 const resetMap = () => {
-  address.value = `${CENTER_COORDINATES.lat}, ${CENTER_COORDINATES.lng}`;
+  addressElement.value = `${CENTER_COORDINATES.lat}, ${CENTER_COORDINATES.lng}`;
   mainPinMarker.setLatLng({
     lat: CENTER_COORDINATES.lat,
     lng: CENTER_COORDINATES.lng,
@@ -107,10 +107,3 @@ const renderCards = (similarCards) => {
 };
 
 export{renderCards};
-
-const resetUsualMarkers = () => {
-  similarMarkerGroup.clearLayers();
-  createUsualMarker();
-};
-
-export{resetUsualMarkers};

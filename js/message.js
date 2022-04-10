@@ -22,15 +22,15 @@ const showMessage = (messageType) => {
   const onDocumentKeydown = (evt) => {
     if (evt.key === 'Escape') {
       evt.preventDefault();
-      onDocumentClose();
+      massage.classList.add('hidden');
     }
   };
 
-  function onDocumentClose() {
+  const onDocumentClose = () => {
     massage.classList.add('hidden');
     document.removeEventListener('click', onDocumentClose);
     document.removeEventListener('keydown', onDocumentKeydown);
-  }
+  };
 
   const onButtonClose = () => {
     onDocumentClose();

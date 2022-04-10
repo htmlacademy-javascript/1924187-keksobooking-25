@@ -1,14 +1,14 @@
 const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 const DEFAULT_SRC = 'img/muffin-grey.svg';
 
-const avatarfileChooser = document.querySelector('.ad-form-header__input');
-const avatarPreview = document.querySelector('div.ad-form-header__preview img');
-const housingfileChooser = document.querySelector('.ad-form__input');
-const photoContainer = document.querySelector('.ad-form__photo');
+const avatarFileChooserElement = document.querySelector('.ad-form-header__input');
+const avatarPreviewElement = document.querySelector('div.ad-form-header__preview img');
+const housingFileChooserElement = document.querySelector('.ad-form__input');
+const photoContainerElement = document.querySelector('.ad-form__photo');
 
-const housingPreview = document.createElement('img');
-housingPreview.classList.add('ad-form__housing-photo');
-photoContainer.appendChild(housingPreview);
+const housingPreviewElement = document.createElement('img');
+housingPreviewElement.classList.add('ad-form__housing-photo');
+photoContainerElement.appendChild(housingPreviewElement);
 
 const uploadFile = (fileChooser, preview) => {
   fileChooser.addEventListener('change', () => {
@@ -23,13 +23,13 @@ const uploadFile = (fileChooser, preview) => {
   });
 };
 
-uploadFile(avatarfileChooser, avatarPreview);
+uploadFile(avatarFileChooserElement, avatarPreviewElement);
 
-uploadFile(housingfileChooser, housingPreview);
+uploadFile(housingFileChooserElement, housingPreviewElement);
 
 const removeFile = (avatarPhoto, housingPhoto) => {
   avatarPhoto.src = DEFAULT_SRC;
   housingPhoto.src = '';
 };
 
-export {avatarPreview, housingPreview, removeFile};
+export {avatarPreviewElement, housingPreviewElement, removeFile};

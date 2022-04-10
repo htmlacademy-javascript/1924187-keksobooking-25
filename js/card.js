@@ -8,15 +8,15 @@ const houseroomTranslate = {
   hotel: 'Отель'
 };
 const addFeatures = (advertisementElement, features) => {
-  const featuresList = advertisementElement.querySelectorAll('.popup__feature');
+  const featuresListElement = advertisementElement.querySelectorAll('.popup__feature');
 
-  featuresList.forEach((featureListItem) => {
+  featuresListElement.forEach((featureListItemElement) => {
     const isNecessary = features.some(
-      (feature) => featureListItem.classList.contains(`popup__feature--${feature}`),
+      (feature) => featureListItemElement.classList.contains(`popup__feature--${feature}`),
     );
 
     if (!isNecessary) {
-      featureListItem.remove();
+      featureListItemElement.remove();
     }
   });
 };
