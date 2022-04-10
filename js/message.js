@@ -19,17 +19,13 @@ const showMessage = (messageType) => {
   const closeButton = typeMessageTamplate.querySelector(`.${messageType}__button`);
   document.querySelector('.notice').append(massage);
 
-  const onDocumentKeydown = (evt) => {
+  const onDocumentClose = (evt) => {
     if (evt.key === 'Escape') {
       evt.preventDefault();
-      massage.classList.add('hidden');
     }
-  };
-
-  const onDocumentClose = () => {
     massage.classList.add('hidden');
     document.removeEventListener('click', onDocumentClose);
-    document.removeEventListener('keydown', onDocumentKeydown);
+    document.removeEventListener('keydown', onDocumentClose);
   };
 
   const onButtonClose = () => {
@@ -37,9 +33,8 @@ const showMessage = (messageType) => {
     closeButton.removeEventListener('click', onButtonClose);
   };
 
-  document.addEventListener('keydown', onDocumentKeydown);
+  document.addEventListener('keydown', onDocumentClose);
   document.addEventListener('click', onDocumentClose);
-
 
   if (closeButton) {
     closeButton.addEventListener('click', onButtonClose);
